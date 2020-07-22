@@ -16,7 +16,18 @@ public class SocketServer {
 				Socket s = ss.accept();
 				BufferedInputStream bis = new BufferedInputStream(s.getInputStream());
 				BufferedOutputStream bos = new BufferedOutputStream(s.getOutputStream());
+			
+				while(true) {
+					
+					int ch = bis.read();
+					System.out.println("Recebido no servidor " + (char)ch);
+					bos.write((byte)ch);
+					bos.flush();
+					
+				}
 			}
+			
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
